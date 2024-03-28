@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
+import { Product } from "./products";
 
-const products = [
-  { name: "product1", price: 100.0 },
-  { name: "product2", price: 200.0 },
-];
 
 function App() {
-  const [products, setProducts] = useState([
-    { name: "product1", price: 100.0 },
-    { name: "product2", price: 200.0 },
-  ]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetch('https://localhost:7107/api/Products')
@@ -18,22 +12,24 @@ function App() {
   }, [])
 
   function AddProduct() {
-    setProducts((prevState) => [
-      ...prevState,
+    setProducts((prevState) => [...prevState,
       {
-        name: "product" + (prevState.length + 1),
-        price: prevState.length * 1000 + 100,
-      },
-    ]);
+        id: prevState.length + 101,
+        name: 'product' + (prevState.length + 1),
+        price: (prevState.length * 100) + 100,
+        brand: 'some brand',
+        description: 'some description',
+        pictureUrl: 'https://picsum.photos/200'
+      }]);
   }
 
   return (
     <div>
       <h1>Enterprise Shopping</h1>
       <ul>
-        {products.map((x, index) => (
-          <li key={index}>
-            {x.name} - {x.price}
+        {products.map(product => (
+          <li key={product.id}>
+            {product.name} - {product.price}
           </li>
         ))}
       </ul>
