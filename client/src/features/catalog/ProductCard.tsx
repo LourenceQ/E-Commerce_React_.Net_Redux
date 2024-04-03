@@ -1,18 +1,31 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { Product } from "../../app/models/products";
 interface Props {
   product: Product;
 }
 
-export default function ProductCard({product}: Props) {
+export default function ProductCard({ product }: Props) {
   return (
-    <ListItem key={product.id}>
-          <ListItemAvatar>
-            <Avatar src={product.pictureUrl} />
-          </ListItemAvatar>
-          <ListItemText>
-            {product.name} - {product.price}
-          </ListItemText>
-        </ListItem>
-  )
+    <Card>
+      <CardMedia
+        image="http://picsum.photos/200"
+        title="title"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Lizard
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+      </CardActions>
+    </Card>
+  );
 }
