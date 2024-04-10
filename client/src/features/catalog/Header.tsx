@@ -1,11 +1,17 @@
-import { AppBar, Typography } from "@mui/material";
+import { AppBar, Switch, Typography } from "@mui/material";
 
-export default function Header() {
+interface Props {
+    darkMode: boolean;
+    handleThemeChange: () => void;
+}
+
+export default function Header({darkMode, handleThemeChange}: Props) {
     return (
         <AppBar position='static' sx={{mb: 4}}>
             <Typography variant='h6'>
                 Enterprise Shopping
             </Typography>
+            <Switch checked={darkMode} onChange={handleThemeChange}/>
         </AppBar>
     )
 }
