@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   darkMode: boolean;
@@ -31,7 +32,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
         <Switch checked={darkMode} onChange={handleThemeChange} />
         <List>
           {midLinks.map(({ title, path }) => (
-            <ListItem >
+            <ListItem component={NavLink} to={path} key={path} sx={{color: 'inbherit', typography: 'h6'}}>
                 {title.toUpperCase()}
             </ListItem>
           ))}
