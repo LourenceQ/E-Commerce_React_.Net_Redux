@@ -1,5 +1,8 @@
+import { ShoppingCart } from "@mui/icons-material";
 import {
   AppBar,
+  Badge,
+  IconButton,
   List,
   ListItem,
   Switch,
@@ -30,10 +33,32 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
       <Toolbar>
         <Typography variant="h6">Enterprise Shopping</Typography>
         <Switch checked={darkMode} onChange={handleThemeChange} />
-        <List>
+        <List sx={{ display: "flex" }}>
           {midLinks.map(({ title, path }) => (
-            <ListItem component={NavLink} to={path} key={path} sx={{color: 'inbherit', typography: 'h6'}}>
-                {title.toUpperCase()}
+            <ListItem
+              component={NavLink}
+              to={path}
+              key={path}
+              sx={{ color: "inbherit", typography: "h6" }}
+            >
+              {title.toUpperCase()}
+            </ListItem>
+          ))}
+        </List>
+        <IconButton size = "large" sx={{color: "inherit"}}>
+          <Badge badgeContent={4} color="secondary">
+            <ShoppingCart/>
+          </Badge>
+        </IconButton>
+        <List sx={{ display: "flex" }}>
+          {rightLinks.map(({ title, path }) => (
+            <ListItem
+              component={NavLink}
+              to={path}
+              key={path}
+              sx={{ color: "inbherit", typography: "h6" }}
+            >
+              {title.toUpperCase()}
             </ListItem>
           ))}
         </List>
