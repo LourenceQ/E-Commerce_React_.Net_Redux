@@ -31,7 +31,14 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
       <Toolbar>
-        <Typography variant="h6">Enterprise Shopping</Typography>
+        <Typography
+          variant="h6"
+          component={NavLink}
+          to="/"
+          sx={{ color: "inherit", textDecoration: "none" }}
+        >
+          Enterprise Shopping
+        </Typography>
         <Switch checked={darkMode} onChange={handleThemeChange} />
         <List sx={{ display: "flex" }}>
           {midLinks.map(({ title, path }) => (
@@ -39,15 +46,20 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
               component={NavLink}
               to={path}
               key={path}
-              sx={{ color: "inbherit", typography: "h6" }}
+              sx={{
+                color: "inbherit",
+                typography: "h6",
+                "&:hover": { color: "secondary.main" },
+                "&.active": { color: "text.secondary" },
+              }}
             >
               {title.toUpperCase()}
             </ListItem>
           ))}
         </List>
-        <IconButton size = "large" sx={{color: "inherit"}}>
+        <IconButton size="large" sx={{ color: "inherit" }}>
           <Badge badgeContent={4} color="secondary">
-            <ShoppingCart/>
+            <ShoppingCart />
           </Badge>
         </IconButton>
         <List sx={{ display: "flex" }}>
