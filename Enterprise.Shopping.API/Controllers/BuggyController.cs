@@ -5,25 +5,25 @@ namespace Enterprise.Shopping.API.Controllers;
 
 public class BuggyController : BaseApiController
 {
-    [HttpGet]
+    [HttpGet("not-found")]
     public ActionResult GetNotFound()
     {
         return NotFound();
     }
-    
-    [HttpGet]
+
+    [HttpGet("bad-request")]
     public ActionResult GetBadRequest()
     {
-        return BadRequest();
+        return BadRequest(new ProblemDetails() { Title = "Bad request" });
     }
-    
-    [HttpGet]
+
+    [HttpGet("unauthorized")]
     public ActionResult GetUnauthorized()
     {
         return Unauthorized();
     }
-    
-    [HttpGet]
+
+    [HttpGet("validation-error")]
     public ActionResult GetValidationError()
     {
         ModelState.AddModelError("Problem1", "Error");
@@ -31,8 +31,8 @@ public class BuggyController : BaseApiController
 
         return ValidationProblem();
     }
-    
-    [HttpGet]
+
+    [HttpGet("server-error")]
     public ActionResult GetServerError()
     {
         throw new Exception("Server error");
