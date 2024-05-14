@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Enterprise.Shopping.API.Middleware;
@@ -36,8 +37,18 @@ public class ExceptionMiddleware
 
             ProblemDetails response = new()
             {
-
+                Status = 500,
+                Detail = _env.IsDevelopment() ? ex.StackTrace?.ToString() : null,
+                Title = ex.Message
             };
+
+            JsonSerializerOptions options = new()
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            string json = JsonSerializer.Serialize(response, options);
+            await context.Response.WriteAsync(json);
         }   
     }
 }
