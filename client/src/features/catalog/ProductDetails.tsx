@@ -15,21 +15,20 @@ import agent from "../../app/api/agent";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>();
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     agent.Catalog.details(parseInt(id ?? ""))
-      .then((response) => setProduct(response.data))
+      .then((response) => setProduct(response))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-      console.log(id);
+      console.log();
   }, [id]);
 
   if (loading) return <h3>Loading...</h3>;
 
   if (!product) return <h3>Product not found.</h3>;
-    console.log(product);
 
   return (
     <Grid container spacing={6}>
