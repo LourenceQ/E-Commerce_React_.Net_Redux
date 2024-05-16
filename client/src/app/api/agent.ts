@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-axios.defaults.baseURL = "http://localhost:5153/api/";
+axios.defaults.baseURL = "https://localhost:7107/api/";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -11,3 +11,14 @@ const requests = {
     put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
     delete: (url: string) => axios.delete(url).then(responseBody),
 }
+
+const Catalog = {
+    list: () => requests.get('products'),
+    details: (id: number) => requests.get(`products/${id}`)
+}
+
+const agent = {
+    Catalog
+}
+
+export default agent;
