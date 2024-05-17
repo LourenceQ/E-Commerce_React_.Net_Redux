@@ -23,7 +23,6 @@ export default function ProductDetails() {
       .then((response) => setProduct(response))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-      console.log();
   }, [id]);
 
   if (loading) return <h3>Loading...</h3>;
