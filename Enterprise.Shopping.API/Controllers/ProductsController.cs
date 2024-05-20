@@ -1,6 +1,7 @@
 ﻿using Enterprise.Shopping.API.Data;
 using Enterprise.Shopping.API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Enterprise.Shopping.API.Controllers;
 
@@ -14,14 +15,16 @@ public class ProductsController : BaseApiController
     }
 
     [HttpGet]
-    public ActionResult<List<Product>> GetProducts()
+    public async Task<ActionResult<List<Product>>> GetProducts()
     {
-        return _context.Products.ToList();
+        return await _context.Products.ToListAsync();
     }
 
-    [HttpGet("{id}")]
-    public ActionResult<Product> GetProduct(int id)
+    [HttpGet("{id}")]  
+    public async Task<ActionResult<Product>> GetProduct(int id)
     {
-        return _context.Products.Find(id);
+        var product = await _context.Products.FindAsync(id);
+        
+        return product != null ? product : NotFound();
     }
 }
