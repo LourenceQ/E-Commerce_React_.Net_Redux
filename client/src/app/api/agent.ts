@@ -1,17 +1,46 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { promises } from "dns";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://localhost:7107/api/";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
+interface ErrorResponse {
+  title?: string;
+}
+
 axios.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     return response;
   },
   (error: AxiosError) => {
-    console.log("caught by intercetor");
-    return Promise.reject(error.response);
+    const { response } = error;
+
+    if (response) {
+      const { status } = response;
+      const data = response.data as ErrorResponse;
+
+      switch (status) {
+        case 400:
+          toast.error(data.title || "Bad Request");
+          break;
+        case 401:
+          toast.error(data.title || "Unauthorized");
+          break;
+        case 500:
+          toast.error(data.title || "Internal Server Error");
+          break;
+        default:
+          break;
+      }
+
+      return Promise.reject(response);
+    }
+
+    toast.error("Netwotk error or server not reachable");
+
+    return Promise.reject(error);
   }
 );
 
