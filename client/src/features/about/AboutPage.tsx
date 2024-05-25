@@ -1,4 +1,4 @@
-import { Alert, Button, ButtonGroup, Container, Typography } from "@mui/material";
+import { Alert, AlertTitle, Button, ButtonGroup, Container, List, ListItem, ListItem, ListItemText, Typography } from "@mui/material";
 import agent from "../../app/api/agent";
 import { useState } from "react";
 
@@ -60,7 +60,14 @@ export default function AboutPage() {
       </ButtonGroup>
       {validationErrors.length > 0 &&
         <Alert severity="error">
-          
+          <AlertTitle>Validation Errors</AlertTitle>
+          <List>
+            {validationErrors.map(error => {
+              <ListItem key={error}>
+                <ListItemText>{error}</ListItemText>
+              </ListItem>
+            })}
+          </List>
         </Alert>
       }
     </Container>
