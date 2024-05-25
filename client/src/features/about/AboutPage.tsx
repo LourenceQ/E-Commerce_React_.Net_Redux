@@ -1,7 +1,16 @@
-import { Button, ButtonGroup, Container, Typography } from "@mui/material";
+import { Alert, Button, ButtonGroup, Container, Typography } from "@mui/material";
 import agent from "../../app/api/agent";
+import { useState } from "react";
 
 export default function AboutPage() {
+  const [validationErrors, setValidationErrors] = useState<string[]>({});
+
+  function getValidateError() {
+    agent.TestErrors.getValidationError()
+      .then(() => console.log("should not seet this"))
+      .catch(error => setValidationErrors(error));
+  }
+
   return (
     <Container>
       <Typography gutterBottom variant="h2">
@@ -49,6 +58,11 @@ export default function AboutPage() {
           Teste Validation Error
         </Button>
       </ButtonGroup>
+      {validationErrors.length > 0 &&
+        <Alert severity="error">
+          
+        </Alert>
+      }
     </Container>
   );
 }
