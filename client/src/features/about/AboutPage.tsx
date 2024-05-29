@@ -1,14 +1,24 @@
-import { Alert, AlertTitle, Button, ButtonGroup, Container, List, ListItem, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  ButtonGroup,
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import agent from "../../app/api/agent";
 import { useState } from "react";
 
 export default function AboutPage() {
-  const [validationErrors, setValidationErrors] = useState<string[]>({});
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
-  function getValidateError() {
+  function getValidationError() {
     agent.TestErrors.getValidationError()
       .then(() => console.log("should not seet this"))
-      .catch(error => setValidationErrors(error));
+      .catch((error) => setValidationErrors(error));
   }
 
   return (
@@ -47,29 +57,27 @@ export default function AboutPage() {
             agent.TestErrors.get400Error().catch((error) => console.log(error))
           }
         >
-          Teste 400 Error
+          Teste 500 Error
         </Button>
-        <Button
-          variant="contained"
-          onClick={() =>
-            agent.TestErrors.get400Error().catch((error) => console.log(error))
-          }
-        >
+
+        <Button variant="contained" onClick={getValidationError}>
+          {" "}
           Teste Validation Error
         </Button>
       </ButtonGroup>
-      {validationErrors.length > 0 &&
+      {validationErrors.length > 0 && (
         <Alert severity="error">
           <AlertTitle>Validation Errors</AlertTitle>
           <List>
-            {validationErrors.map(error => {
+            {validationErrors.map((error) => (
               <ListItem key={error}>
                 <ListItemText>{error}</ListItemText>
               </ListItem>
-            })}
+            ))}
           </List>
         </Alert>
-      }
+      )}
+      fv{" "}
     </Container>
   );
 }
