@@ -6,7 +6,6 @@ import {
   Container,
   List,
   ListItem,
-  ListItem,
   ListItemText,
   Typography,
 } from "@mui/material";
@@ -60,16 +59,17 @@ export default function AboutPage() {
         >
           Teste 500 Error
         </Button>
-        
-        <Button variant="contained" onClick={getValidationError}> Teste Validation Error</Button>
 
+        <Button variant="contained" onClick={getValidationError}>
+          {" "}
+          Teste Validation Error
+        </Button>
       </ButtonGroup>
-
-      {validationErrors.length > 0 && 
-        <Alert severity='error'>
+      {validationErrors.length > 0 && (
+        <Alert severity="error">
           <AlertTitle>Validation Errors</AlertTitle>
           <List>
-            {validationErrors.map(error => (
+            {validationErrors.map((error) => (
               <ListItem key={error}>
                 <ListItemText>{error}</ListItemText>
               </ListItem>

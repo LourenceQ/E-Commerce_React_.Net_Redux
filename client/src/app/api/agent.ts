@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { promises } from "dns";
 import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://localhost:7107/api/";
