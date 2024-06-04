@@ -16,7 +16,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
-import { Switch } from "react-router-dom";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -37,7 +36,6 @@ function App() {
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
       <Container>
-        <Switch>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/catalog" element={<Catalog />} />
@@ -47,7 +45,6 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route Component={NotFound} />
           </Routes>
-        </Switch>
       </Container>
     </ThemeProvider>
   );
