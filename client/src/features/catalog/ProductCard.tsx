@@ -1,3 +1,18 @@
-export default function ProductCard() {
-  return <h1>Card</h1>;
+import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Product } from "../../app/models/products";
+interface Props {
+  product: Product;
+}
+
+export default function ProductCard({product}: Props) {
+  return (
+    <ListItem key={product.id}>
+          <ListItemAvatar>
+            <Avatar src={product.pictureUrl} />
+          </ListItemAvatar>
+          <ListItemText>
+            {product.name} - {product.price}
+          </ListItemText>
+        </ListItem>
+  )
 }
