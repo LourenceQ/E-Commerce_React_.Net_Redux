@@ -10,13 +10,17 @@ export default function AboutPage() {
       <ButtonGroup fullWidth>
         <Button
           variant="contained"
-          onClick={() => agent.TestErrors.get400Error()}
+          onClick={() =>
+            agent.TestErrors.get400Error().catch((error) => console.log(error))
+          }
         >
           Teste 400 Error
         </Button>
         <Button
           variant="contained"
-          onClick={() => agent.TestErrors.get400Error()}
+          onClick={() =>
+            agent.TestErrors.get400Error().catch((error) => console.log(error))
+          }
         >
           Teste 401 Error
         </Button>
@@ -30,13 +34,17 @@ export default function AboutPage() {
         </Button>
         <Button
           variant="contained"
-          onClick={() => agent.TestErrors.get400Error()}
+          onClick={() =>
+            agent.TestErrors.get400Error().catch((error) => console.log(error))
+          }
         >
           Teste 400 Error
         </Button>
         <Button
           variant="contained"
-          onClick={() => agent.TestErrors.get400Error()}
+          onClick={() =>
+            agent.TestErrors.get400Error().catch((error) => console.log(error))
+          }
         >
           Teste Validation Error
         </Button>
