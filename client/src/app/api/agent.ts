@@ -37,7 +37,7 @@ axios.interceptors.response.use(
           toast.error(data.title || "Unauthorized");
           break;
         case 500:
-          toast.error(data.title || "Internal Server Error");
+          history.push(pathname: "/server-error", state:{error:data})
           break;
         default:
           break;
