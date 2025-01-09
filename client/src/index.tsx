@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./app/layout/styles.css";
 import App from "./app/layout/App";
 import reportWebVitals from "./reportWebVitals";
-import { Router } from "react-router-dom";
+import { Router, Routes } from "react-router-dom";
 
 export const history = createBrowserHistory();
 
@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router location={""} navigator={undefined} >
+    <Routes location={""}>
       <App />
-    </Router>
+    </Routes>
   </React.StrictMode>
 );
 
